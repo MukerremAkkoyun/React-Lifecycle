@@ -6,17 +6,36 @@ const divStyle = {
   width: '900px',
   margin: '0px auto'
  
-};
+}
+
 
 class App extends Component {
+
+  state = {
+    name : 'mehmet'
+  }
+
+  constructor(props) {
+    super(props);
+    console.log("constructor");
+    console.log(props);
+
+    //initial
+    this.state = {
+       name : 'test'
+    }
+  }
+
+
   render() {
     return (
       <div>
 
         <Navigation />
 
+
         <div className="cotainer">
-          <h1>title</h1>
+          <h1>{ this.state.name }</h1>
         </div>
 
         <div style={divStyle} >
