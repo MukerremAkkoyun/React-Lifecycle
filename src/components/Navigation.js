@@ -1,5 +1,5 @@
-
 import React from 'react';
+
 
 const NavItem = props => {
     const pageURI = window.location.pathname+window.location.search
@@ -13,6 +13,38 @@ const NavItem = props => {
         </a>
       </li>
     );
+  }
+
+
+
+  class NavDropdown extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        isToggleOn: false
+      };
+    }
+    showDropdown(e) {
+      e.preventDefault();
+      this.setState(prevState => ({
+        isToggleOn: !prevState.isToggleOn
+      }));
+    }
+    render() {
+      const classDropdownMenu = 'dropdown-menu' + (this.state.isToggleOn ? ' show' : '')
+      return (
+        <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"
+            onClick={(e) => {this.showDropdown(e)}}>
+            {this.props.name}
+          </a>
+          <div className={classDropdownMenu} aria-labelledby="navbarDropdown">
+            {this.props.children}
+          </div>
+        </li>
+      )
+    }
   }
 
 
@@ -32,18 +64,13 @@ class Navigation extends React.Component {
             <NavItem path="/page2" name="Page2" />
             <NavItem path="/page3" name="Disabled" disabled="true" />
 
+            <NavDropdown name="Dropdown">
+            <a className="dropdown-item" href="/">Action</a>
+            <a className="dropdown-item" href="/">Another action</a>
+            <div className="dropdown-divider"></div>
+            <a className="dropdown-item" href="/">Something else here</a>
+            </NavDropdown>
 
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/">Action</a>
-                <a className="dropdown-item" href="/">Another action</a>
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="/">Something else here</a>
-              </div>
-            </li>
             <li className="nav-item">
               <a className="nav-link disabled" href="/">Disabled</a>
             </li>
