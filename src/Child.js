@@ -15,6 +15,11 @@ export default class Child extends PureComponent {
    }
    
  
+   componentWillReceiveProps = (nextProps) => {
+     console.log("componentWillReceiveProps", nextProps);
+   }
+
+   
     render() {
 
         console.log("Child 4 render")
