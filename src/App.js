@@ -40,6 +40,12 @@ class App extends Component {
   }
   
 
+  changeName = () => {
+    this.setState({
+      name:'xyz'
+    })
+  };
+
   render() {
 
     console.log("main 3 render");
@@ -52,7 +58,8 @@ class App extends Component {
 
         <div className="cotainer">
           <h1>{ this.state.name }</h1>
-          <Child />
+          <Child name={this.state.name} />
+          <button  onClick={this.changeName}>change name</button>
         </div>
 
         <div style={divStyle} >
