@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation';
 import { Carousel } from 'react-bootstrap';
+import Child from './Child'
 
 const divStyle = {
   width: '900px',
@@ -17,17 +18,32 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    console.log("constructor");
-    console.log(props);
-
+    console.log("main 1 constructor");
     //initial
-    this.state = {
-       name : 'test'
-    }
+    // this.state = {
+    //    name : 'test'
+    // }
   }
 
+  componentWillMount = () => {
+    console.log("main 2 componentWillMount")
+  }
+  
+  componentDidMount = () => {
+    console.log("main 4 componentDidMount");
+
+    // setTimeout(() => {
+    //   this.setState({
+    //     name : 'Re-render'
+    //   });
+    // }, 2000);
+  }
+  
 
   render() {
+
+    console.log("main 3 render");
+
     return (
       <div>
 
@@ -36,6 +52,7 @@ class App extends Component {
 
         <div className="cotainer">
           <h1>{ this.state.name }</h1>
+          <Child />
         </div>
 
         <div style={divStyle} >
