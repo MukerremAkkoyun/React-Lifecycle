@@ -1,22 +1,65 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation';
 import { Carousel } from 'react-bootstrap';
+import Child from './Child'
 
 const divStyle = {
   width: '900px',
   margin: '0px auto'
  
-};
+}
+
 
 class App extends Component {
+
+  state = {
+    name : 'mehmet'
+  }
+
+  constructor(props) {
+    super(props);
+    console.log("main 1 constructor");
+    //initial
+    // this.state = {
+    //    name : 'test'
+    // }
+  }
+
+  componentWillMount = () => {
+    console.log("main 2 componentWillMount")
+  }
+  
+  componentDidMount = () => {
+    console.log("main 4 componentDidMount");
+
+    // setTimeout(() => {
+    //   this.setState({
+    //     name : 'Re-render'
+    //   });
+    // }, 2000);
+  }
+  
+
+  changeName = () => {
+    this.setState({
+      name:'xyz'
+    })
+  };
+
   render() {
+
+    console.log("main 3 render");
+
     return (
       <div>
 
         <Navigation />
 
+
         <div className="cotainer">
-          <h1>title</h1>
+          <h1>{ this.state.name }</h1>
+          <Child name={this.state.name} />
+          <button  onClick={this.changeName}>change name</button>
         </div>
 
         <div style={divStyle} >
